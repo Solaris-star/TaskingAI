@@ -32,7 +32,7 @@ def _build_custom_host_chat_completion_payload_openai_function_call(
         if value is not None:
             payload[key] = value
     if function_call:
-        payload["function_call"] = function_call
+        payload["function_call"] = function_call if function_call in ["none", "auto"] else {"name": function_call}
     if functions:
         payload["functions"] = [f.model_dump() for f in functions]
     return payload

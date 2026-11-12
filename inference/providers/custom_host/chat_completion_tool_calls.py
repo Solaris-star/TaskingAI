@@ -36,7 +36,7 @@ def _build_custom_host_chat_completion_payload_openai_tool_calls(
         if function_call in ["none", "auto"]:
             payload["tool_choice"] = function_call
         else:
-            payload["tool_choice"] = {"name": function_call}
+            payload["tool_choice"] = {"type": "function", "function": {"name": function_call}}
     if functions:
         payload["tools"] = [{"type": "function", "function": f.model_dump()} for f in functions]
     return payload
